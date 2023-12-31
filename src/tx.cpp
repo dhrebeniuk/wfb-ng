@@ -179,11 +179,6 @@ void PcapTransmitter::inject_packet(const uint8_t *buf, size_t size)
     memcpy(p, buf, size);
     p += size;
 
-    int pcap_status = pcap_activate(ppcap[current_output]);
-    if (pcap_status !=0) {
-        throw runtime_error(string_format("error status: %d, %s", pcap_status, pcap_geterr(ppcap[current_output])));
-    }
-        
     const char *lastError = pcap_geterr(ppcap[current_output]);
     if (lastError != nullptr && strlen(lastError) > 0) {
         throw runtime_error(string_format(pcap_geterr(ppcap[current_output])));
