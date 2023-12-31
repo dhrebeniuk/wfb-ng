@@ -213,9 +213,10 @@ void PcapTransmitter::inject_packet(const uint8_t *buf, size_t size)
     if (current_output >= 0)
     {
         // Normal mode
-        if (pcap_inject(ppcap[current_output], txbuf, p - txbuf) != p - txbuf)
+        size_t packet_size = p - txbuf;
+        if (pcap_inject(ppcap[current_output], txbuf, packet_size) != packet_size)
         {
-            fprintf(stderr, "Unable to inject packet: %s\n", pcap_geterr(ppcap[current_output]));
+            fprintf(stderr, "Unable to inject packet: %s, size: %d\n", pcap_geterr(ppcap[current_output]), packet_size);
 
 //            throw runtime_error(string_format("Unable to inject packet: %s", pcap_geterr(ppcap[current_output])));
         }
