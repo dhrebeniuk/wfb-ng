@@ -136,15 +136,41 @@ PcapTransmitter::PcapTransmitter(int k, int n, const string &keypair, uint64_t e
         if (p == NULL){
             throw runtime_error(string_format("Unable to open interface %s in pcap: %s", it->c_str(), errbuf));
         }
-        if (pcap_set_snaplen(p, 4096) !=0) throw runtime_error("set_snaplen failed");
-        if (pcap_set_promisc(p, 1) != 0) throw runtime_error("set_promisc failed");
-        //if (pcap_set_rfmon(p, 1) !=0) throw runtime_error("set_rfmon failed");
-        if (pcap_set_timeout(p, -1) !=0) throw runtime_error("set_timeout failed");
-        //if (pcap_set_buffer_size(p, 2048) !=0) throw runtime_error("set_buffer_size failed");
-        if (pcap_set_immediate_mode(p, 1) != 0) throw runtime_error(string_format("pcap_set_immediate_mode failed: %s", pcap_geterr(p)));
-        if (pcap_activate(p) !=0) throw runtime_error(string_format("pcap_activate failed: %s", pcap_geterr(p)));
-        //if (pcap_setnonblock(p, 1, errbuf) != 0) throw runtime_error(string_format("set_nonblock failed: %s", errbuf));
+        if (pcap_set_snaplen(p, 4096) ==0) {
+            fprintf(stderr, "pcap set snaplen [OK]\n");
+        }  
+        else {
+            throw runtime_error("set_snaplen failed");
+        }
 
+        if (pcap_set_promisc(p, 1) == 0) {
+            fprintf(stderr, "set promisc [OK]\n");
+        }
+        else {
+            throw runtime_error("set_promisc failed");
+        }
+
+        if (pcap_set_timeout(p, -1) == 0) {
+            fprintf(stderr, "pcap set timeout [OK]\n");
+        }
+        else {
+            throw runtime_error("set_timeout failed");
+        }
+
+        if (pcap_set_immediate_mode(p, 1) == 0) {
+            fprintf(stderr, "pcap set immediate mode [OK]\n");
+        }
+        else {
+            throw runtime_error(string_format("pcap_set_immediate_mode failed: %s", pcap_geterr(p)));
+        }
+
+        if (pcap_activate(p) == 0) {
+            fprintf(stderr, "pcap_activate [OK]\n");
+        }
+        else {
+            throw runtime_error(string_format("pcap_activate failed: %s", pcap_geterr(p)));
+        }
+                        
         ppcap.push_back(p);
     }
 }
