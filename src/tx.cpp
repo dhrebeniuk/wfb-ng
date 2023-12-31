@@ -200,7 +200,7 @@ void PcapTransmitter::inject_packet(const uint8_t *buf, size_t size)
         {
             if (pcap_inject(*it, txbuf, p - txbuf) != p - txbuf)
             {
-                throw runtime_error(string_format("Unable to inject packet: %s", pcap_geterr(ppcap[current_output])));
+                throw runtime_error(string_format("Mirror mode - Unable to inject packet: %s", pcap_geterr(ppcap[current_output])));
             }
         }
     }
