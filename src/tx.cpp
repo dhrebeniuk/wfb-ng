@@ -179,6 +179,10 @@ void PcapTransmitter::inject_packet(const uint8_t *buf, size_t size)
     memcpy(p, buf, size);
     p += size;
 
+    if (pcap_geterr(ppcap[current_output]) != nullptr) {
+        throw runtime_error(string_format(pcap_geterr(ppcap[current_output])));
+    }
+    
     if (current_output >= 0)
     {
         // Normal mode
