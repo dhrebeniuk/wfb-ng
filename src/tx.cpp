@@ -239,7 +239,7 @@ void Transmitter::send_block_fragment(size_t packet_size)
 
 void Transmitter::send_session_key(void)
 {
-    //fprintf(stderr, "Announce session key\n");
+    fprintf(stderr, "Announce session key\n");
     inject_packet((uint8_t*)session_key_packet, sizeof(session_key_packet));
 }
 
