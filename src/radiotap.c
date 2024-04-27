@@ -18,33 +18,47 @@
 
 /* function prototypes and related defs are in include/net/cfg80211.h */
 
+
 static const struct radiotap_align_size rtap_namespace_sizes[] = {
-	[IEEE80211_RADIOTAP_TSFT] = { .align = 8, .size = 8, },
-	[IEEE80211_RADIOTAP_FLAGS] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_RATE] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_CHANNEL] = { .align = 2, .size = 4, },
-	[IEEE80211_RADIOTAP_FHSS] = { .align = 2, .size = 2, },
-	[IEEE80211_RADIOTAP_DBM_ANTSIGNAL] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_DBM_ANTNOISE] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_LOCK_QUALITY] = { .align = 2, .size = 2, },
-	[IEEE80211_RADIOTAP_TX_ATTENUATION] = { .align = 2, .size = 2, },
-	[IEEE80211_RADIOTAP_DB_TX_ATTENUATION] = { .align = 2, .size = 2, },
-	[IEEE80211_RADIOTAP_DBM_TX_POWER] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_ANTENNA] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_DB_ANTSIGNAL] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_DB_ANTNOISE] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_RX_FLAGS] = { .align = 2, .size = 2, },
-	[IEEE80211_RADIOTAP_TX_FLAGS] = { .align = 2, .size = 2, },
-	[IEEE80211_RADIOTAP_RTS_RETRIES] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_DATA_RETRIES] = { .align = 1, .size = 1, },
-	[IEEE80211_RADIOTAP_MCS] = { .align = 1, .size = 3, },
-	[IEEE80211_RADIOTAP_AMPDU_STATUS] = { .align = 4, .size = 8, },
-	[IEEE80211_RADIOTAP_VHT] = { .align = 2, .size = 12, },
-	[IEEE80211_RADIOTAP_TIMESTAMP] = { .align = 8, .size = 12, },
+	{ .align = 8, .size = 8, }, // 0 IEEE80211_RADIOTAP_TSFT
+	{ .align = 1, .size = 1, }, // 1 [IEEE80211_RADIOTAP_FLAGS]
+	{ .align = 1, .size = 1, }, // 2 [IEEE80211_RADIOTAP_RATE]
+	{ .align = 2, .size = 4, }, // 3 [IEEE80211_RADIOTAP_CHANNEL]
+	{ .align = 2, .size = 2, }, // 4 [IEEE80211_RADIOTAP_FHSS] 
+	{ .align = 1, .size = 1, }, // 5 [IEEE80211_RADIOTAP_DBM_ANTSIGNAL]
+	{ .align = 1, .size = 1, }, // 6 [IEEE80211_RADIOTAP_DBM_ANTNOISE]
+	{ .align = 2, .size = 2, }, // 7 [IEEE80211_RADIOTAP_LOCK_QUALITY]
+	{ .align = 2, .size = 2, }, // 8 [IEEE80211_RADIOTAP_TX_ATTENUATION]
+	{ .align = 2, .size = 2, }, // 9 [IEEE80211_RADIOTAP_DB_TX_ATTENUATION]
+	{ .align = 1, .size = 1, }, // 10 [IEEE80211_RADIOTAP_DBM_TX_POWER]
+	{ .align = 1, .size = 1, }, // 11 [IEEE80211_RADIOTAP_ANTENNA]
+	{ .align = 1, .size = 1, }, // 12 [IEEE80211_RADIOTAP_DB_ANTSIGNAL]
+	{ .align = 1, .size = 1, }, // 13 [IEEE80211_RADIOTAP_DB_ANTNOISE]
+	{ .align = 2, .size = 2, }, // 14 [IEEE80211_RADIOTAP_RX_FLAGS]
+	{ .align = 2, .size = 2, }, // 15 [IEEE80211_RADIOTAP_TX_FLAGS]
+	{ .align = 1, .size = 1, }, // 16 [IEEE80211_RADIOTAP_RTS_RETRIES]
+	{ .align = 1, .size = 1, }, // 17 [IEEE80211_RADIOTAP_DATA_RETRIES]
+	{ .align = 0, .size = 0, }, // 18
+	{ .align = 1, .size = 3, }, // 19 [IEEE80211_RADIOTAP_MCS]
+	{ .align = 4, .size = 8, }, // 20 [IEEE80211_RADIOTAP_AMPDU_STATUS]
+	{ .align = 2, .size = 12, }, // 21 [IEEE80211_RADIOTAP_VHT]
+	{ .align = 8, .size = 12, }, //22 [IEEE80211_RADIOTAP_TIMESTAMP]
+	{ .align = 0, .size = 0, }, // 23
+	{ .align = 0, .size = 0, }, // 24
+	{ .align = 0, .size = 0, }, // 25
+	{ .align = 0, .size = 0, }, // 26
+	{ .align = 0, .size = 0, }, // 27
+	{ .align = 0, .size = 0, }, // 28
+	{ .align = 1, .size = 0, }, // 29 [IEEE80211_RADIOTAP_RADIOTAP_NAMESPACE]
+	{ .align = 2, .size = 6, }, // 30 [IEEE80211_RADIOTAP_VENDOR_NAMESPACE]
+	{ .align = 1, .size = 9, }, // 31 [IEEE80211_RADIOTAP_EXT]
+
+
 	/*
 	 * add more here as they are defined in radiotap.h
 	 */
 };
+
 
 static const struct ieee80211_radiotap_namespace radiotap_ns = {
 	.n_bits = ARRAY_SIZE(rtap_namespace_sizes),
