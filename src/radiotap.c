@@ -59,11 +59,15 @@ static const struct radiotap_align_size rtap_namespace_sizes[] = {
 	 */
 };
 
-
 static const struct ieee80211_radiotap_namespace radiotap_ns = {
-	.n_bits = ARRAY_SIZE(rtap_namespace_sizes),
-	.align_size = rtap_namespace_sizes,
+    .align_size = rtap_namespace_sizes,
+    .n_bits = sizeof(rtap_namespace_sizes) / sizeof(rtap_namespace_sizes[0]),
 };
+
+// static const struct ieee80211_radiotap_namespace radiotap_ns = {
+// 	.n_bits = ARRAY_SIZE(rtap_namespace_sizes),
+// 	.align_size = rtap_namespace_sizes,
+// };
 
 /**
  * ieee80211_radiotap_iterator_init - radiotap parser iterator initialization
